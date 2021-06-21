@@ -1,7 +1,8 @@
 import cv2 as cv
 import time 
 
-import numpy as np 
+import numpy as np
+
 from matplotlib import pyplot as plt 
 
 def histogram_rgb(img): 
@@ -10,6 +11,11 @@ def histogram_rgb(img):
         histr = cv.calcHist([img], [i], None, [256], [0, 256])
         plt.plot(histr, color = col) 
         plt.xlim([0, 256]) 
+    plt.show()
+
+def histogram_gray(img): 
+    plt.hist(img.flatten(), bins=256, range=(0, 1)) 
+    plt.plot() 
     plt.show()
 # -----------------------------------------------------------------
 def detect_by_mask(image):
@@ -29,12 +35,13 @@ def detect_by_mask(image):
 def detect_edge(image): 
     img = np.copy(image)
     img = cv.cvtColor(img, cv.COLOR_RGB2GRAY)
-    kernels_x = np.array([  [-1, 0, 1],
+    kernels_x   = np.array([[-1, 0, 1],
                             [-2, 0, 2], 
                             [-1, 0, 1]])
-    kernels_y = kernels_x.T
-
-    kernels_g  = np.ones((3, 3), np.float32) / 9
+    kernels_y   = np.array([[1, 2, 1], 
+                            [0, 0, 0], 
+                            [-1, -2, -1]])
+    kernels_g   = np.ones((3, 3), np.float32) / 9
 
     Gg = cv.filter2D(img, -1, kernels_g)
     img = Gg
@@ -46,11 +53,31 @@ def detect_edge(image):
     cv.waitKey(0) 
     cv.destroyAllWindows() 
     return None 
-# -----------------------------------------------------------------
+# -------------------SOURCE-IMAGE---------------------------------
 path    = 'E:\Github\Machine-learning-for-counting-blood-cells\dataset2-master\images\TRAIN_SIMPLE\EOSINOPHIL\_0_207.jpeg'
 img_rgb = cv.imread(path, cv.COLOR_BGR2RGB) 
 # cv.imshow('image orginal', img_rgb) 
-# -----------------------------------------------------------------
-new_img = detect_by_mask(img_rgb)
-# -----------------------------------------------------------------
-detect_edge(new_img)
+
+# ------------------RGB-TO-GRAY_----------------------------------
+img_gray= cv.cvtColor(img_rgb, cv.COLOR_RGB2GRAY)
+# cv.imshow('cc1', img_gray)
+
+# -----------------GAUSSIAN-FILTER--------------------------------
+# img_gauss_filter = cv.adaptiveThreshold(img_rgb, 255, cv.ADAPTIVE_THRESH_GAUSSIAN_C, cv.THRESH_BINARY, 11, 2) 
+img_gauss_filter = cv.GaussianBlur(img_gray, (5, 5), 0) 
+cv.imshow('cc2', img_gauss_filter)
+histogram_gray(img_gauss_filter) 
+
+# -----------------OTSU-THRESHOLDING------------------------------
+blur = np.copy(img_gauss_filter)
+ret3, th3 = cv.threshold(img_gauss_filter,0,255,cv.THRESH_BINARY+cv.THRESH_OTSU)
+cv.imshow('cc3', th3)
+cv.waitKey(0) 
+cv.destroyAllWindows() 
+# -----------------SOBEL-EDGE-DETECTION---------------------------
+# Source img 
+# Gaussian Filter 
+# S chanel 
+# Otsu Threshold 
+# Sbol Edge Detection
+# Hough Transform
