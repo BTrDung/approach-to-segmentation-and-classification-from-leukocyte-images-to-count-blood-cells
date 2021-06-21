@@ -34,10 +34,15 @@ def detect_edge(image):
                             [-1, 0, 1]])
     kernels_y = kernels_x.T
 
+    kernels_g  = np.ones((3, 3), np.float32) / 9
+
+    Gg = cv.filter2D(img, -1, kernels_g)
+    img = Gg
+
     Gx = cv.filter2D(img, -1, kernels_x)
     Gy = cv.filter2D(img, -1, kernels_y)
     G1 = np.sqrt(np.square(Gx * 1.0) + np.square(Gy * 1.0))
-    cv.imshow('gg', G1)
+    cv.imshow('detect edge', G1)
     cv.waitKey(0) 
     cv.destroyAllWindows() 
     return None 
