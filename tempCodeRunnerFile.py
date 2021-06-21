@@ -1,2 +1,2 @@
-(img_rgb, cv.COLOR_RGB2GRAY)
-cv.imshow('cc1', img_gray)
+c2', img_gauss_filter)
+histogram_gray(

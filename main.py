@@ -4,7 +4,7 @@ import time
 import numpy as np
 
 from matplotlib import pyplot as plt 
-
+# ----------------------------------------------------------------
 def histogram_rgb(img): 
     color = ('r', 'g', 'b')
     for i, col in enumerate(color): 
@@ -13,14 +13,22 @@ def histogram_rgb(img):
         plt.xlim([0, 256]) 
     plt.show()
 
-def histogram_gray(img): 
-    plt.hist(img.flatten(), bins=256, range=(0, 1)) 
-    plt.plot() 
-    plt.show()
+def prtplt(hist): 
+    plt.plot(hist)
+    plt.xlim([0, 256])
+    plt.legend(('histogram'), loc='upper left')
+    plt.show() 
+
+def histogram_gray(image):
+    img = np.copy(image) 
+    hist = cv.calcHist([img], [0], None , [256], [0, 256])
+    size = img.shape[0]*img.shape[1] 
+    hist = hist/size
+    return prtplt(hist) 
 # -----------------------------------------------------------------
 def detect_by_mask(image):
     img = np.copy(image)  
-    img_hsv     = cv.cvtColor(img, cv.COLOR_RGB2HSV)
+    # img_hsv     = cv.cvtColor(img, cv.COLOR_RGB2HSV)
     lower_red   = np.array([5, 5, 5]) 
     upper_red   = np.array([210, 210, 200])  
 
@@ -28,8 +36,6 @@ def detect_by_mask(image):
     result      = cv.bitwise_and(img, img, mask=mask)
     # cv.imshow('mask', mask)
     # cv.imshow('res', result)
-    # cv.waitKey(0) 
-    # cv.destroyAllWindows() 
     return result
 # -----------------------------------------------------------------
 def detect_edge(image): 
@@ -58,20 +64,28 @@ path    = 'E:\Github\Machine-learning-for-counting-blood-cells\dataset2-master\i
 img_rgb = cv.imread(path, cv.COLOR_BGR2RGB) 
 # cv.imshow('image orginal', img_rgb) 
 
+
 # ------------------RGB-TO-GRAY_----------------------------------
 img_gray= cv.cvtColor(img_rgb, cv.COLOR_RGB2GRAY)
 # cv.imshow('cc1', img_gray)
+
 
 # -----------------GAUSSIAN-FILTER--------------------------------
 # img_gauss_filter = cv.adaptiveThreshold(img_rgb, 255, cv.ADAPTIVE_THRESH_GAUSSIAN_C, cv.THRESH_BINARY, 11, 2) 
 img_gauss_filter = cv.GaussianBlur(img_gray, (5, 5), 0) 
 cv.imshow('cc2', img_gauss_filter)
-histogram_gray(img_gauss_filter) 
+# histogram_gray(img_gauss_filter) 
+
 
 # -----------------OTSU-THRESHOLDING------------------------------
 blur = np.copy(img_gauss_filter)
-ret3, th3 = cv.threshold(img_gauss_filter,0,255,cv.THRESH_BINARY+cv.THRESH_OTSU)
-cv.imshow('cc3', th3)
+ret, th = cv.threshold(blur,240,255,cv.THRESH_BINARY+cv.THRESH_OTSU)
+cv.imshow('cc3', th)
+
+
+# -----------------BINARY-THRESHOLDING----------------------------
+# ret,thres = cv.threshold(img_gauss_filter,193,255,cv.THRESH_BINARY)
+# cv.imshow('cc4', thres)
 cv.waitKey(0) 
 cv.destroyAllWindows() 
 # -----------------SOBEL-EDGE-DETECTION---------------------------
