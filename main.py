@@ -54,6 +54,7 @@ def detect_edge(image):
     kernels_y = np.array([[1, 2, 1],
                           [0, 0, 0],
                           [-1, -2, -1]])
+
     Gx = cv.filter2D(img, -1, kernels_x)
     Gy = cv.filter2D(img, -1, kernels_y)
     G1 = np.sqrt(np.square(Gx * 1.0) + np.square(Gy * 1.0))
@@ -62,8 +63,7 @@ def detect_edge(image):
 
 # -------------------SOURCE-IMAGE---------------------------------
 # path = 'cell_counter-Develope\crop.jpg'
-path = 'img.png'
-
+path = 'inp.jpg'
 img_rgb = cv.imread(path)
 # img_rgb = cv.resize(img_rgb, (2200, 1652), interpolation=cv.INTER_AREA)
 # cv.imshow('image orginal', img_rgb)
@@ -89,8 +89,7 @@ cv.imwrite('otsu.png', img_otsu)
 # -----------------BINARY-THRESHOLDING----------------------------
 # ret,thres = cv.threshold(img_gauss_filter,193,255,cv.THRESH_BINARY)
 # cv.imshow('cc4', thres)
-# cv.waitKey(0)
-# cv.destroyAllWindows()
+
 # -----------------SOBEL-EDGE-DETECTION---------------------------
 # img_edge_detection = detect_edge(img_otsu)
 # cv.imshow('edge detection', img_edge_detection)
@@ -109,7 +108,7 @@ if circles is not None:
         radius = i[2]
         # cv.circle(img_rgb, center, radius, (255, 0, 255), 3)
 
-cv.imshow('vcl', img_rgb)
+# cv.imshow('vcl', img_rgb)
 cv.imwrite('output.png', img_rgb)
 
 cv.waitKey(0)
