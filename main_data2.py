@@ -33,7 +33,7 @@ def histogram_gray(image):
  
  
 # -------------------SOURCE-IMAGE---------------------------------
-path = 'E:/Github/Machine-learning-for-counting-blood-cells/data2/1.bmp'
+path = 'E:/Github/Machine-learning-for-counting-blood-cells/data2/image/1.bmp'
 img_rgb = cv.imread(path)
 
 # ------------------RGB-TO-GRAY_----------------------------------
@@ -46,8 +46,7 @@ cv.imwrite('E:/Github/Machine-learning-for-counting-blood-cells/data2/otsu.png',
 # -----------------HOUGH-CIRCLE-TRANSFORM---------------------------
 gray = np.copy(img_otsu)
 rows = gray.shape[0]
-circles = cv.HoughCircles(gray, cv.HOUGH_GRADIENT, 1, rows / 15, param1=350, param2=6, minRadius=11, maxRadius=25)
-
+circles = cv.HoughCircles(img_gray, cv.HOUGH_GRADIENT, 1, rows / 30 , param1=50, param2=11, minRadius=11, maxRadius=19)
 print(len(circles[0]))
 
 if circles is not None:
