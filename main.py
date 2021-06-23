@@ -38,7 +38,7 @@ def detect_by_mask(image):
     lower_red = np.array([5, 5, 5])
     upper_red = np.array([210, 210, 200])
 
-    mask = cv.inRange(img_hsv, lower_red, upper_red)
+    mask = cv.inRange(img, lower_red, upper_red)
     result = cv.bitwise_and(img, img, mask=mask)
     # cv.imshow('mask', mask)
     # cv.imshow('res', result)
@@ -62,8 +62,7 @@ def detect_edge(image):
 
 
 # -------------------SOURCE-IMAGE---------------------------------
-# path = 'cell_counter-Develope\crop.jpg'
-path = 'inp.jpg'
+path = 'E:/Github/Machine-learning-for-counting-blood-cells/data1/1.jpg'
 img_rgb = cv.imread(path)
 # img_rgb = cv.resize(img_rgb, (2200, 1652), interpolation=cv.INTER_AREA)
 # cv.imshow('image orginal', img_rgb)
@@ -75,16 +74,16 @@ img_gray = cv.cvtColor(img_rgb, cv.COLOR_RGB2GRAY)
 
 
 # -----------------GAUSSIAN-FILTER--------------------------------
-img_gauss_filter = cv.GaussianBlur(img_gray, (5, 5), 0)
+# img_gauss_filter = cv.GaussianBlur(img_gray, (5, 5), 0)
 # cv.imshow('cc2', img_gauss_filter)
 # histogram_gray(img_gauss_filter)
 
 
 # -----------------OTSU-THRESHOLDING------------------------------
-blur = np.copy(img_gauss_filter)
+# blur = np.copy(img_gauss_filter)
 ret, img_otsu = cv.threshold(img_gray, 0, 255, cv.THRESH_BINARY_INV | cv.THRESH_OTSU)
-cv.imshow('cc3', img_otsu)
-cv.imwrite('otsu.png', img_otsu)
+# cv.imshow('cc3', img_otsu)
+cv.imwrite('E:\Github\Machine-learning-for-counting-blood-cells\data1\otsu.png', img_otsu)
 
 # -----------------BINARY-THRESHOLDING----------------------------
 # ret,thres = cv.threshold(img_gauss_filter,193,255,cv.THRESH_BINARY)
@@ -109,7 +108,7 @@ if circles is not None:
         # cv.circle(img_rgb, center, radius, (255, 0, 255), 3)
 
 # cv.imshow('vcl', img_rgb)
-cv.imwrite('output.png', img_rgb)
+cv.imwrite('E:\Github\Machine-learning-for-counting-blood-cells\data1\output.png', img_rgb)
 
-cv.waitKey(0)
-cv.destroyAllWindows()
+# cv.waitKey(0)
+# cv.destroyAllWindows()
