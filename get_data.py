@@ -5,7 +5,7 @@ import numpy as np
 from matplotlib import pyplot as plt
 # -------------------SOURCE-IMAGE---------------------------------
 result = []
-def convert(path_img, path_mask): 
+def convert(path_img, path_msk): 
     img     = cv.imread(path_img) 
     img_rgb = np.zeros((img.shape[0] + 224, img.shape[1] + 224, 3))
     for i in range(0, img.shape[0]): 
@@ -34,12 +34,6 @@ def convert(path_img, path_mask):
             center = (i[0], i[1]) 
             crop = np.copy(img_rgb[(i[1]-112):(i[1]+112), (i[0]-112):(i[0]+112)])
             result.append(crop)
-            # cv.imwrite('E:/Github/Machine-learning-for-counting-blood-cells/data2/result.png', crop) 
-            # cv.circle(img_rgb, center, 1, (0, 100, 100), 3)
-            # radius = i[2]
-            # cv.circle(img_rgb, center, radius, (255, 0, 255), 2)
-            
-    # cv.imwrite('E:/Github/Machine-learning-for-counting-blood-cells/data2/result.png', img_rgb) 
 
 # -------------------BAOSO---------------------------------
 # for i in range(1, 54):
@@ -101,12 +95,12 @@ def convert(path_img, path_mask):
 
 
 # -------------------NEUT---------------------------------
-for i in range(1, 51):
-    print(i)
-    path_img = 'E:/Github/Machine-learning-for-counting-blood-cells/data2/Main Dataset/neut/' + str(i) + '.bmp'
-    path_msk = 'E:/Github/Machine-learning-for-counting-blood-cells/data2/Ground Truth Segmentation/neut/areaforexpert1/' + str(i) + '_expert.bmp'
-    convert(path_img, path_msk)
+# for i in range(1, 51):
+#     print(i)
+#     path_img = 'E:/Github/Machine-learning-for-counting-blood-cells/data2/Main Dataset/neut/' + str(i) + '.bmp'
+#     path_msk = 'E:/Github/Machine-learning-for-counting-blood-cells/data2/Ground Truth Segmentation/neut/areaforexpert1/' + str(i) + '_expert.bmp'
+#     convert(path_img, path_msk)
 
-for i in range(0, len(result)):
-    cv.imwrite('E:/Github/Machine-learning-for-counting-blood-cells/data2/neut/' + str(i) + '.png', result[i])
+# for i in range(0, len(result)):
+#     cv.imwrite('E:/Github/Machine-learning-for-counting-blood-cells/data2/neut/' + str(i) + '.png', result[i])
 
