@@ -1,4 +1,4 @@
-# Machine-learning-for-counting-blood-cells
+# Using convolutional neural network for predicting diseases via leukocyte classification 
 
 ## Dataset 
 
