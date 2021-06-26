@@ -9,8 +9,8 @@ All of them are color images and were collected from Hematology-Oncology and BMT
 
 ## Requirements
 
-Tensorflow:  
+Tensorflow: 2.4.1 
 
-OpenCV: 
+OpenCV: 4.5.2.54
 
-Weights: 
+Weights: Link
