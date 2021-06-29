@@ -33,7 +33,8 @@ def crop_object(path_img, path_msk, path_par):
     img_gray    = cv.cvtColor(mask, cv.COLOR_RGB2GRAY) 
     img_canny   = cv.Canny(mask, 255, 255)
      
-    circles = cv.HoughCircles(img_canny, cv.HOUGH_GRADIENT, 1, img_canny.shape[0] / 20 , param1=200, param2=15, minRadius=20, maxRadius=50)
+    circles = cv.HoughCircles(img_canny, cv.HOUGH_GRADIENT, 1, img_canny.shape[0] / 20 , param1=200, param2=15, 
+                                minRadius=25, maxRadius=50)
     if circles is not None:
         circles = np.uint16(np.around(circles))
         for i in circles[0, :]:

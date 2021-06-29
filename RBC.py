@@ -25,7 +25,8 @@ def histogram_gray(image):
     hist = cv.calcHist([img], [0], None, [256], [0, 256])
     size = img.shape[0] * img.shape[1]
     hist = hist / size
-    return prtplt(hist)
+    # prtplt(hist)
+    return hist
 
 # ----------------------------------------------------------------
 def count_rbc(path, path_input, path_mask, path_output, path_rbc):
@@ -38,10 +39,13 @@ def count_rbc(path, path_input, path_mask, path_output, path_rbc):
                 img[i][j] = msk[i][j] 
 
     cv.imwrite(path_rbc, img) 
-
     img_rgb         = cv.imread(path_rbc)
     img_gray        = cv.cvtColor(img_rgb, cv.COLOR_RGB2GRAY) 
     ret, img_otsu   = cv.threshold(img_gray, 0, 255, cv.THRESH_BINARY_INV | cv.THRESH_OTSU) 
+    img_otsu = cv.Canny(img_otsu, 255, 255)
+    
+
+    cv.imwrite(path + 'canny.png', img_otsu)
     gray            = np.copy(img_otsu)
     rows            = gray.shape[0]
     circles         = cv.HoughCircles(img_gray, cv.HOUGH_GRADIENT, 1, rows / 30 , param1=50, param2=10, minRadius=11, maxRadius=19)
@@ -53,3 +57,10 @@ def count_rbc(path, path_input, path_mask, path_output, path_rbc):
             cv.circle(img_rgb, center, radius, (255, 0, 255), 2)
     cv.imwrite(path_output, img_rgb)
     return circles[0].shape[0]
+
+# def file_his(): 
+#     img = cv.imread('E:/Github/cells/LISC Database/Main Dataset/Baso/49.bmp') 
+#     img = cv.cvtColor(img, cv.COLOR_RGB2GRAY)
+#     ret, img_thres= cv.threshold(img, 155, 255,cv.THRESH_BINARY)
+#     cv.imwrite('___.png', img_thres)
+# file_his()
