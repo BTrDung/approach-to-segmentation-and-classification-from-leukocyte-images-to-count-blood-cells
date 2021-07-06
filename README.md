@@ -12,6 +12,7 @@ All of them are color images and were collected from Hematology-Oncology and BMT
 </p>
 
 ## Requirements
+Python: ![](https://img.shields.io/badge/python-3.8.11-blue)
 
 Tensorflow: ![](https://img.shields.io/badge/tensorflow-2.4.1-blue)
 
