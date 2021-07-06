@@ -11,9 +11,9 @@ All of them are color images and were collected from Hematology-Oncology and BMT
 
 ## Requirements
 
-Tensorflow: ![img](https://img.shields.io/badge/tensorflow-2.4.1-blue)
+Tensorflow: ![](https://img.shields.io/badge/tensorflow-2.4.1-blue)
 
-OpenCV: ![img](https://img.shields.io/badge/opencv-4.5.2.54-blue)
+OpenCV: ![](https://img.shields.io/badge/opencv-4.5.2.54-blue)
 
-Weights: Link
+Weights: [![Download](https://img.shields.io/badge/download-weights-blue.svg?longCache=true&style=flat&logo=google-drive)](https://drive.google.com/drive/folders/13CAH4i3mEc0Ybk14_UJFEJsg_1NTcJIT?usp=sharing) 
 
