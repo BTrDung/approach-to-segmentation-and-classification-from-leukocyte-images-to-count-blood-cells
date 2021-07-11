@@ -28,3 +28,8 @@ Weights: [![Download](https://img.shields.io/badge/download-vgg16.h5-blue.svg?lo
 > pip install cv2
 > 
 > pip install matplotlib
+
+## Run 
+
+> python main.py
+
