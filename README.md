@@ -12,11 +12,19 @@ All of them are color images and were collected from Hematology-Oncology and BMT
 </p>
 
 ## Requirements
-Python: ![](https://img.shields.io/badge/python-3.8.11-blue)
-
-Tensorflow: ![](https://img.shields.io/badge/tensorflow-2.4.1-blue)
-
-OpenCV: ![](https://img.shields.io/badge/opencv-4.5.2.54-blue) 
+Python: [![Download](https://img.shields.io/badge/download-3.8.11-blue.svg?longCache=true&style=flat&logo=python)](https://www.python.org/downloads/release/python-3811/) 
  
-Weights: [![Download](https://img.shields.io/badge/download-vgg.h5-blue.svg?longCache=true&style=flat&logo=google-drive)](https://drive.google.com/drive/folders/13CAH4i3mEc0Ybk14_UJFEJsg_1NTcJIT?usp=sharing) 
+Tensorflow: [![Download](https://img.shields.io/badge/download-2.4.1-blue.svg?longCache=true&style=flat&logo=tensorflow)](https://www.tensorflow.org/) 
 
+OpenCV: [![Download](https://img.shields.io/badge/download-4.5.2.54-blue.svg?longCache=true&style=flat&logo=opencv)](https://opencv.org/) 
+
+Weights: [![Download](https://img.shields.io/badge/download-vgg16.h5-blue.svg?longCache=true&style=flat&logo=google-drive)](https://drive.google.com/drive/folders/13CAH4i3mEc0Ybk14_UJFEJsg_1NTcJIT?usp=sharing) 
+
+## Setup
+> pip install numpy 
+> 
+> pip install tensorflow.keras
+> 
+> pip install cv2
+> 
+> pip install matplotlib
