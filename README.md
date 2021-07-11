@@ -8,7 +8,7 @@ Samples were taken from peripheral blood of 8 normal subjects and 400 samples we
 All of them are color images and were collected from Hematology-Oncology and BMT Research Center of Imam Khomeini hospital in Tehran, Iran. The images were classified by a hematologist into normal leukocytes: **basophil**, **eosinophil**, **lymphocyte**, **monocyte**, and **neutrophil**. Also, the areas related to the nucleus and cytoplasm were manually segmented by an expert.
 
 <p align="center">
-  <img src="https://github.com/BTrDung/Complex/blob/master/CreProjCBC/4.bmp" width="700">
+  <img src="https://github.com/BTrDung/Complex/blob/master/CreProjCBC/4.bmp" width="400">
 </p>
 
 ## Requirements
