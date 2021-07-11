@@ -1,4 +1,4 @@
-# Using convolutional neural network for predicting diseases via leukocyte classification 
+# approach to segmentation and classification from leukocyte images to count blood cells
 
 ## Dataset 
 
